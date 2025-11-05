@@ -22,7 +22,7 @@ namespace TodoApp
             availableCommands = new List<ICommand>
             {
                 new HelpCommand { AvailableCommands = new List<ICommand>() },
-                new AddCommand { TodoList = todoList },
+                // new AddCommand { TodoList = todoList },
                 new ViewCommand { TodoList = todoList },
                 new DoneCommand { TodoList = todoList },
                 new UpdateCommand { TodoList = todoList },
@@ -61,12 +61,12 @@ namespace TodoApp
             return command;
         }
 
-        private ICommand CreateCommandInstance(string commandName)
+        private ICommand CreateCommandInstance(string? commandName)
         {
             return commandName switch
             {
                 "help" => new HelpCommand { AvailableCommands = availableCommands },
-                "add" => new AddCommand { TodoList = todoList },
+                // "add" => new AddCommand { TodoList = todoList },
                 "view" => new ViewCommand { TodoList = todoList },
                 "done" => new DoneCommand { TodoList = todoList },
                 "update" => new UpdateCommand { TodoList = todoList },
@@ -82,9 +82,9 @@ namespace TodoApp
         {
             switch (command)
             {
-                case AddCommand addCommand:
-                    ParseAddCommand(addCommand, parts);
-                    break;
+                // case AddCommand addCommand:
+                //     ParseAddCommand(addCommand, parts);
+                //     break;
                 case ViewCommand viewCommand:
                     ParseViewCommand(viewCommand, parts);
                     break;
@@ -103,30 +103,30 @@ namespace TodoApp
             }
         }
 
-        private void ParseAddCommand(AddCommand command, string[] parts)
-        {
-            command.Multiline = false;
-            command.TaskText = "";
+        // private void ParseAddCommand(AddCommand command, string[] parts)
+        // {
+        //     command.Multiline = false;
+        //     command.TaskText = "";
 
-            for (int i = 1; i < parts.Length; i++)
-            {
-                if (parts[i] == "-m" || parts[i] == "--multiline")
-                {
-                    command.Multiline = true;
-                }
-                else
-                {
-                    // Собираем оставшиеся части как текст задачи
-                    List<string> textParts = new List<string>();
-                    for (int j = i; j < parts.Length; j++)
-                    {
-                        textParts.Add(parts[j]);
-                    }
-                    command.TaskText = string.Join(" ", textParts);
-                    break;
-                }
-            }
-        }
+        //     for (int i = 1; i < parts.Length; i++)
+        //     {
+        //         if (parts[i] == "-m" || parts[i] == "--multiline")
+        //         {
+        //             command.Multiline = true;
+        //         }
+        //         else
+        //         {
+        //             // Собираем оставшиеся части как текст задачи
+        //             List<string> textParts = new List<string>();
+        //             for (int j = i; j < parts.Length; j++)
+        //             {
+        //                 textParts.Add(parts[j]);
+        //             }
+        //             command.TaskText = string.Join(" ", textParts);
+        //             break;
+        //         }
+        //     }
+        // }
 
         private void ParseViewCommand(ViewCommand command, string[] parts)
         {
